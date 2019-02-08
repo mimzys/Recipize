@@ -1,0 +1,176 @@
+@charset 'utf-8';
+
+@import 'settings';
+@import 'foundation';
+
+// If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
+//
+// @import 'motion-ui/motion-ui';
+
+// We include everything by default.  To slim your CSS, remove components you don't use.
+
+@include foundation-global-styles;
+@include foundation-xy-grid-classes;
+//@include foundation-grid;
+//@include foundation-flex-grid;
+@include foundation-flex-classes;
+@include foundation-typography;
+@include foundation-forms;
+@include foundation-button;
+@include foundation-accordion;
+@include foundation-accordion-menu;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+@include foundation-card;
+@include foundation-close-button;
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-responsive-embed;
+@include foundation-label;
+@include foundation-media-object;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+@include foundation-slider;
+@include foundation-sticky;
+@include foundation-reveal;
+@include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-thumbnail;
+@include foundation-title-bar;
+@include foundation-tooltip;
+@include foundation-top-bar;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+
+// If you'd like to include motion-ui the foundation-rails gem comes prepackaged with it, uncomment the 3 @imports, if you are not using the gem you need to install the motion-ui sass package.
+//
+// @include motion-ui-transitions;
+// @include motion-ui-animations;
+
+$input-number-size: 80px;
+
+.input-number-group {
+  display: flex;
+  justify-content: center;
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+  }
+
+  .input-group-button {
+    line-height: calc(#{$input-number-size}/2 - 5px);
+  }
+
+  .input-number {
+    width: $input-number-size;
+    padding: 0 12px;
+    vertical-align: top;
+    text-align: center;
+    outline: none;
+    display: block;
+    margin: 0;
+  }
+
+  .input-number,
+  .input-number-decrement,
+  .input-number-increment {
+    border: 1px solid $medium-gray;
+    height: $input-number-size/2;
+    user-select: none;
+    border-radius: $global-radius;
+  }
+
+  .input-number-decrement,
+  .input-number-increment {
+    display: inline-block;
+    width: $input-number-size/2;
+    background: $light-gray;
+    color: $body-font-color;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+
+  .input-number-decrement {
+    margin-right: 0.3rem;
+  }
+
+  .input-number-increment {
+    margin-left: 0.3rem;
+  }
+}
+
+$alert-callout-subtle-border-left-width: rem-calc(5);
+$alert-callout-subtle-radius: 0.6rem;
+$alert-callout-subtle-large-font-scale: 150%;
+$alert-callout-subtle-small-font-scale: 80%;
+
+.alert-callout-subtle {
+  width: 100%;
+  background: $light-gray;
+  color: $dark-gray;
+  border: 0;
+  border-left: $alert-callout-subtle-border-left-width solid $dark-gray;
+  box-shadow: 0 5px 8px -6px rgba(0,0,0, 0.2);
+
+  &.success {
+    background: $light-gray;
+    color: $dark-gray;
+    border-left: $alert-callout-subtle-border-left-width solid $success-color;
+  }
+
+  &.alert {
+    background: $light-gray;
+    color: $dark-gray;
+    border-left: $alert-callout-subtle-border-left-width solid $alert-color;
+  }
+
+  &.warning {
+    background: $light-gray;
+    color: $dark-gray;
+    border-left: $alert-callout-subtle-border-left-width solid $warning-color;
+  }
+
+  &.primary {
+    background: $light-gray;
+    color: $dark-gray;
+    border-left: $alert-callout-subtle-border-left-width solid $primary-color;
+  }
+
+  &.small {
+
+    font-size: $alert-callout-subtle-small-font-scale;
+
+    .close-button {
+      font-size: 1.5rem;
+    }
+  }
+
+  &.large {
+    font-size: $alert-callout-subtle-large-font-scale;
+
+    .close-button {
+      font-size: 3rem;
+    }
+  }
+
+  .close-button {
+    font-size: 2rem;
+    @include vertical-center;
+  }
+
+  &.radius {
+    border-radius: $alert-callout-subtle-radius;
+  }
+}
