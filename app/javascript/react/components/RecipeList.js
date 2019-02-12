@@ -4,58 +4,61 @@ import PieChart from 'react-minimal-pie-chart';
 import RecipeShow from './RecipeShow'
 
 const RecipeList = (props) => {
-  let carbs = Math.round(props.recipe.totalNutrients.CHOCDF.quantity / props.recipe.yield)
-  let fat = Math.round(props.recipe.totalNutrients.FAT.quantity / props.recipe.yield)
-  let protein = Math.round(props.recipe.totalNutrients.PROCNT.quantity / props.recipe.yield)
+  let carbDigest= props.recipe.digest.find(i => Object.values(i).includes('CHOCDF'))
+  let fatDigest= props.recipe.digest.find(i => Object.values(i).includes('FAT'))
+  let proteinDigest= props.recipe.digest.find(i => Object.values(i).includes('PROCNT'))
 
-  let ingredientList = props.recipe.ingredientLines.map((ingr, index) => {
+  let carbs = Math.round(carbDigest.total)
+  let fat = Math.round(fatDigest.total)
+  let protein = Math.round(proteinDigest.total)
+
+  let ingredientList = props.recipe.ingredients.map((ingr, index) => {
     return(
-      <li key={index}>{ingr}</li>
+      <li key={index}>{ingr.text}</li>
     )
   })
-
+  console.log(props.recipe)
   return(
-    <div className="row">
-      <Link to={{ pathname: `/show/${props.index}`, state: { recipe: props.recipe }, component: {RecipeShow} }}>
-        <h3 className="name">{props.recipe.label}</h3>
-        <div className="large-12 columns" role="content">
-          <article>
-            <div className="row">
-              <div className="large-2 columns">
-                <img src={props.recipe.image} />
-              </div>
-              <div className="large-8 columns">
-                <ul>
-                  Calories per serving: {Math.round(props.recipe.calories / props.recipe.yield)} <br/>
-                  Servings: {props.recipe.yield} <br/>
-                  Ingredients: <br/>
-                  <ul>
-                    {ingredientList}
-                  </ul>
-                </ul>
-              </div>
-              <div className="large-2 columns">
-                <PieChart className="macros"
-                  data={[
-                  { title: 'Carbs', value: carbs, color: '#E38627' },
-                  { title: 'Fat', value: fat, color: '#C13C37' },
-                  { title: 'Protein', value: protein, color: '#6A2135' },
-                  ]}
-                  radius={30}
-                  cy={30}
-                />
-                <ul>
-                  <li>Protein: {protein} (g)</li>
-                  <li>Fat: {fat} (g)</li>
-                  <li>Carbs: {carbs} (g)</li>
-                </ul>
-              </div>
-            </div>
-          </article>
-        </div>
-      </Link>
-      <hr></hr>
+    <Link to={{ pathname: `/show/${props.index}`, state: { recipe: props.recipe}, component: {RecipeShow} }} >
+    <div className="grid-x">
+      <div className="cell small-offset-1">
+        <h3 >{props.recipe.label}</h3>
+      </div>
     </div>
+    <div className="grid-x grid-margin-x">
+      <div className="cell small-2 small-offset-1">
+        <img src={props.recipe.image}></img>
+      </div>
+      <div className="cell small-6">
+      <ul>
+        Calories per serving: {Math.round(props.recipe.calories / props.recipe.yield)} <br/>
+        Servings: {props.recipe.yield} <br/>
+        Ingredients: <br/>
+        <ul>
+          {ingredientList}
+        </ul>
+      </ul>
+      </div>
+      <div className="cell small-2">
+      <PieChart className="macros"
+        data={[
+        { title: 'Carbs', value: carbs, color: '#E38627' },
+        { title: 'Fat', value: fat, color: '#C13C37' },
+        { title: 'Protein', value: protein, color: '#6A2135' },
+        ]}
+        radius={30}
+        cy={30}
+      />
+      <ul>
+        <li style={{color: '#6A2135'}}>Protein: {protein} (g)</li>
+        <li style={{color: '#C13C37'}}>Fat: {fat} (g)</li>
+        <li style={{color: '#E38627'}}>Carbs: {carbs} (g)</li>
+      </ul>
+      </div>
+    </div>
+    <hr></hr>
+    </Link>
+
   )
 };
 

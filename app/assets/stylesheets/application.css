@@ -29,6 +29,11 @@ svg{
     background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+}
+
+.top-bar-left{
+  color: #B4372F;
 }
 
 .accordion-item{
@@ -38,3 +43,32 @@ svg{
       background-repeat: no-repeat;
       background-size: cover;
 }
+
+.home{
+    background-attachment: fixed;
+    background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
+    background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+
+.body{
+  background-color: #c7893c;
+
+
+}
+
+.search {background:url(https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg) no-repeat center center fixed; background-size:cover;}
+
+.search {width: 1000px;height: 80px;margin: 300px auto;background: #444;background: rgba(0,0,0,.2);border-radius:  3px;border: 1px solid #fff;}
+
+.search input {width: 818px;padding: 20px 10px;float: left;color: #ccc;border: 0;background: transparent;border-radius: 3px 0 0 3px; height:80px;}
+
+.search input:focus {outline: 0;background:transparent;}
+
+.search button {position: relative;float: right;border: 0;padding: 0;cursor: pointer;height: 80px;width: 180px;color: #fff;background: transparent;border-left: 1px solid #fff;border-radius: 0 3px 3px 0;}
+
+.search button:hover {background: #fff;color:#444;}
+.search button:active {box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);}
+
+.search button:focus {outline: 0;}

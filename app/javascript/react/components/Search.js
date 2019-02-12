@@ -9,7 +9,13 @@ class Search extends Component {
   constructor(props){
     super(props);
     this.state = {
-      formPayload: null,
+      formPayload: {
+        q: "",
+        health: [],
+        diet: [],
+        calMin: null,
+        calMax: null
+      },
       q: "",
       from: null,
       to: null,
@@ -48,8 +54,8 @@ class Search extends Component {
     if (this.minMax(this.state.formPayload.calMin, this.state.formPayload.calMax)) {
       add_props += `&calories=${this.minMax(this.state.formPayload.calMin, this.state.formPayload.calMax)}`
     }
-    console.log(add_props)
     const api_call = await fetch(`https://api.edamam.com/search?q=${this.state.formPayload.q}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
+    // const api_call = await fetch(`https://api.edamam.com/search?q={potato}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
 
     const data = await api_call.json();
     this.setState({
@@ -88,6 +94,17 @@ class Search extends Component {
   }
 
   componentDidMount(){
+    let newFormPayload = {
+      q: this.props.location.search.slice(3),
+      health: [],
+      diet: [],
+      calMin: null,
+      calMax: null
+    }
+    this.setState({
+      formPayload: newFormPayload,
+    })
+    this.getRecipes()
   }
 
   render() {
@@ -117,8 +134,10 @@ class Search extends Component {
         <SearchForm
           trackSubmit={this.trackSubmit}
           searchAlert={searchAlert}
+          q={this.props.location.search.slice(3)}
         />
         {recipesArray}
+
       </div>
     )
   }

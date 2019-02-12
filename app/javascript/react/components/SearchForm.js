@@ -25,6 +25,7 @@ class SearchForm extends Component {
     this.toggleHealthCheckbox = this.toggleHealthCheckbox.bind(this)
     this.toggleDietRadio = this.toggleDietRadio.bind(this)
     this.handleCalChange = this.handleCalChange.bind(this)
+    this.setInitialQ = this.setInitialQ.bind(this)
   }
 
   toggleHealthCheckbox = label => {
@@ -114,9 +115,23 @@ class SearchForm extends Component {
     )
   }
 
+  componentDidMount() {
+    this.setState({
+      q: this.props.q
+    })
+  }
+
+  setInitialQ(q) {
+    this.setState({
+      q: q
+    })
+  }
+
   render() {
     $(document).foundation();
     console.log(this.state)
+
+    //this.setInitialQ(this.props.q)
     return(
       <div>
         <div>
@@ -130,7 +145,7 @@ class SearchForm extends Component {
           <input
             placeholder="Search for..."
             ref={input => this.search = input}
-            value={this.content}
+            value={this.state.q}
             onChange={this.handleInputChange}
             className="cell"
           />
