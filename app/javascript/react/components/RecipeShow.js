@@ -5,7 +5,7 @@ import MicroTable from './MicroTable'
 
 
 const RecipeShow = (props) => {
-
+    let onClickFunction
     function postRecipe(recipe) {
 
       // debugger to look at recipe
@@ -37,38 +37,42 @@ const RecipeShow = (props) => {
 
   }
 
-  let carbDigest= props.location.state.recipe.digest.find(i => Object.values(i).includes('CHOCDF'))
-  let fatDigest= props.location.state.recipe.digest.find(i => Object.values(i).includes('FAT'))
-  let proteinDigest= props.location.state.recipe.digest.find(i => Object.values(i).includes('PROCNT'))
+  let carbDigest= props.location.state.digest.find(i => Object.values(i).includes('CHOCDF'))
+  let fatDigest= props.location.state.digest.find(i => Object.values(i).includes('FAT'))
+  let proteinDigest= props.location.state.digest.find(i => Object.values(i).includes('PROCNT'))
 
-  let carbs = Math.round(carbDigest.total / props.location.state.recipe.yield)
-  let fat = Math.round(fatDigest.total / props.location.state.recipe.yield)
-  let protein = Math.round(proteinDigest.total / props.location.state.recipe.yield)
+  let carbs = Math.round(carbDigest.total / props.location.state.yield)
+  let fat = Math.round(fatDigest.total / props.location.state.yield)
+  let protein = Math.round(proteinDigest.total / props.location.state.yield)
 
 
-  let ingredientList = props.location.state.recipe.ingredients.map((ingr, index) => {
+  let ingredientList = props.location.state.ingredients.map((ingr, index) => {
     return(
       <li key={index}>{ingr.text} ({Math.round(ingr.weight)}g)</li>
     )
   })
   console.log(props.location.state.recipe)
 
+  if (props.location.state.button === "Favorite!") {
+    onClickFunction = handleFavorite
+  }
+
 
   return(
     <div>
     <div className="grid-x">
       <div className="cell small-offset-1">
-        <h2>{props.location.state.recipe.label}</h2>
+        <h2>{props.location.state.label}</h2>
       </div>
     </div>
     <div className="grid-x grid-margin-x">
       <div className="cell small-2 small-offset-1">
-        <img src={props.location.state.recipe.image}></img>
+        <img src={props.location.state.image}></img>
       </div>
       <div className="cell small-6">
       <ul>
-        Calories per serving: {Math.round(props.location.state.recipe.calories / props.location.state.recipe.yield)} <br/>
-        Servings: {props.location.state.recipe.yield} <br/>
+        Calories per serving: {Math.round(props.location.state.calories / props.location.state.yield)} <br/>
+        Servings: {props.location.state.yield} <br/>
         Ingredients: <br/>
         <ul>
           {ingredientList}
@@ -95,13 +99,13 @@ const RecipeShow = (props) => {
     <div className="grid-x grid-margin-x">
       <div className="cell small-4 small-offset-1">
         <MicroTable
-          digest={props.location.state.recipe.digest}
+          digest={props.location.state.digest}
         />
       </div>
       <div className="cell small-4 small-offset-1">
         <div className="expanded button-group">
-          <a href={props.location.state.recipe.url} className="button">Let's Get Cooking!</a>
-          <a className="button" onClick={handleFavorite}>Favorite!</a>
+          <a href={props.location.state.url} className="button">Let's Get Cooking!</a>
+          <a className="button" onClick={onClickFunction}>{props.location.state.button}</a>
         </div>
       </div>
     </div>

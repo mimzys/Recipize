@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    request.referrer
+    request.referrer[0...-2]
   end
 
   protected

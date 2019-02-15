@@ -30,7 +30,6 @@ class Profile extends Component {
   render() {
 
     console.log(this.state.hits)
-    debugger
     let recipesArray
     recipesArray = this.state.hits.map((hit, index) => {
       return(
@@ -38,20 +37,25 @@ class Profile extends Component {
           index={index}
           key={index}
           recipe={hit}
-          path={this.props.location.pathname + this.props.location.search}
+          path={"search?q=" + hit.label.split(" ", 1) + this.props.location.search}
           digest={hit.nutrients}
           ingredients={hit.ingredients}
           yield={hit.yield}
           label={hit.label}
           image={hit.image}
           calories={hit.calories}
+          url={hit.url}
+          button="Remove"
         />
       )
     })
     return (
-      <div >
-
+      <div className="x-grid">
+        <div className="cell small-4">
         {recipesArray}
+        </div>
+        <div className="cell small-4">
+        </div>
       </div>
     )
   }
