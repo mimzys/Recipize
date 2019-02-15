@@ -10,28 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_10_180723) do
+ActiveRecord::Schema.define(version: 2019_02_13_153019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "digests", force: :cascade do |t|
-    t.float "daily", null: false
-    t.boolean "hasRDI", default: false
-    t.string "label", null: false
-    t.string "schemaOrgTag", null: false
-    t.string "tag", null: false
-    t.float "total", null: false
-    t.string "unit", null: false
-    t.bigint "recipe_id", null: false
-    t.index ["recipe_id"], name: "index_digests_on_recipe_id"
-  end
 
   create_table "ingredients", force: :cascade do |t|
     t.bigint "recipe_id", null: false
     t.string "text", null: false
     t.float "weight", null: false
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id"
+  end
+
+  create_table "nutrients", force: :cascade do |t|
+    t.float "daily", null: false
+    t.boolean "hasRDI", default: false
+    t.string "label", null: false
+    t.string "schemaOrgTag"
+    t.string "tag", null: false
+    t.float "total", null: false
+    t.string "unit", null: false
+    t.bigint "recipe_id", null: false
+    t.bigint "macro_id"
+    t.index ["macro_id"], name: "index_nutrients_on_macro_id"
+    t.index ["recipe_id"], name: "index_nutrients_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -46,16 +48,11 @@ ActiveRecord::Schema.define(version: 2019_02_10_180723) do
     t.text "healthLabels", default: [], array: true
   end
 
-  create_table "recipies", force: :cascade do |t|
-    t.string "label", null: false
-    t.text "url"
-    t.text "image", null: false
-    t.integer "yield", default: 1
-    t.string "source"
-    t.float "totalTime", null: false
-    t.float "calories", null: false
-    t.text "dietLabels", default: [], array: true
-    t.text "healthLabels", default: [], array: true
+  create_table "user_favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.index ["recipe_id"], name: "index_user_favorites_on_recipe_id"
+    t.index ["user_id"], name: "index_user_favorites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

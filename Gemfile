@@ -63,3 +63,5 @@ gem 'webpacker', '~> 3.3'
 #gem 'faraday'
 #gem "babel-polyfill", "~> 6.0.16"
 gem 'font-awesome-rails'
+gem "active_model_serializers"
+gem "bootstrap-sass-rails", "~> 2.2.2.0"
