@@ -177,16 +177,10 @@ class SearchForm extends Component {
                     />
                   </div>
                 </li>
-                <li className="accordion-item" data-accordion-item>
-                  <a href="#" className="accordion-title">Accordion 3</a>
-                  <div className="accordion-content" data-tab-content>
-                    Type your name!
-                    <input type="text"></input>
-                  </div>
-                </li>
               </ul>
-
-          <input type="submit" value="Submit" />
+            <div className="expanded button-group">
+              <input type="submit" value="Submit" className="button"/>
+            </div>
         </form>
         <script type="text/javascript">
           $(document).foundation()

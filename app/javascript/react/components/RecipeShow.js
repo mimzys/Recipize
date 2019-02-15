@@ -6,13 +6,44 @@ import MicroTable from './MicroTable'
 
 const RecipeShow = (props) => {
 
+    function postRecipe(recipe) {
+
+      // debugger to look at recipe
+      fetch(`/api/v1/recipes`, {
+        method: 'POST',
+        body: JSON.stringify(recipe),
+        credentials: 'same-origin',
+        headers:{
+          'Accept' : 'application/json',
+          'Content-Type' : 'application/json'
+        }
+      })
+      .then(response => {
+
+        if(response.ok){
+          return response;
+        } else {
+          let errorMessage= `${response.status} (${response.statusText})`, error = new Error(errorMessage)
+          throw(error)
+        }
+      })
+      .then(response => response.json())
+    }
+
+  let handleFavorite = (event) => {
+    event.target.style.backgroundColor = "#75d68d"
+    event.target.text = "♡ Favorited! ♡"
+    postRecipe(props.location.state.recipe)
+
+  }
+
   let carbDigest= props.location.state.recipe.digest.find(i => Object.values(i).includes('CHOCDF'))
   let fatDigest= props.location.state.recipe.digest.find(i => Object.values(i).includes('FAT'))
   let proteinDigest= props.location.state.recipe.digest.find(i => Object.values(i).includes('PROCNT'))
 
-  let carbs = Math.round(carbDigest.total)
-  let fat = Math.round(fatDigest.total)
-  let protein = Math.round(proteinDigest.total)
+  let carbs = Math.round(carbDigest.total / props.location.state.recipe.yield)
+  let fat = Math.round(fatDigest.total / props.location.state.recipe.yield)
+  let protein = Math.round(proteinDigest.total / props.location.state.recipe.yield)
 
 
   let ingredientList = props.location.state.recipe.ingredients.map((ingr, index) => {
@@ -70,6 +101,7 @@ const RecipeShow = (props) => {
       <div className="cell small-4 small-offset-1">
         <div className="expanded button-group">
           <a href={props.location.state.recipe.url} className="button">Let's Get Cooking!</a>
+          <a className="button" onClick={handleFavorite}>Favorite!</a>
         </div>
       </div>
     </div>

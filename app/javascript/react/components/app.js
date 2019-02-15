@@ -3,6 +3,7 @@ import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 import RecipeShow from './RecipeShow';
 import Search from './Search';
 import Home from './Home';
+import Profile from './Profile';
 
 const App = props => {
   return(
@@ -17,7 +18,8 @@ const App = props => {
         <IndexRoute component={Home}/>
 
         <Route path="search" component={Search}/>
-        <Route path="show/:id" component={RecipeShow}/>
+        <Route path="search:search/:id" component={RecipeShow}/>
+        <Route path="profile" component={Profile}/>
       </Route>
     </Router>
   )

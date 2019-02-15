@@ -4,42 +4,43 @@ import PieChart from 'react-minimal-pie-chart';
 import RecipeShow from './RecipeShow'
 
 const RecipeList = (props) => {
-  let carbDigest= props.recipe.digest.find(i => Object.values(i).includes('CHOCDF'))
-  let fatDigest= props.recipe.digest.find(i => Object.values(i).includes('FAT'))
-  let proteinDigest= props.recipe.digest.find(i => Object.values(i).includes('PROCNT'))
+  let carbDigest= props.digest.find(i => Object.values(i).includes('CHOCDF'))
+  let fatDigest= props.digest.find(i => Object.values(i).includes('FAT'))
+  let proteinDigest= props.digest.find(i => Object.values(i).includes('PROCNT'))
 
-  let carbs = Math.round(carbDigest.total)
-  let fat = Math.round(fatDigest.total)
-  let protein = Math.round(proteinDigest.total)
+  let carbs = Math.round(carbDigest.total / props.yield)
+  let fat = Math.round(fatDigest.total / props.yield)
+  let protein = Math.round(proteinDigest.total / props.yield)
 
-  let ingredientList = props.recipe.ingredients.map((ingr, index) => {
+  let ingredientList = props.ingredients.map((ingr, index) => {
     return(
       <li key={index}>{ingr.text}</li>
     )
   })
   console.log(props.recipe)
+
   return(
-    <Link to={{ pathname: `/show/${props.index}`, state: { recipe: props.recipe}, component: {RecipeShow} }} >
+    <Link to={{ pathname: `${props.path}/${props.index}`, state: { recipe: props.recipe, path: props.path }, component: {RecipeShow} }} >
     <div className="grid-x">
       <div className="cell small-offset-1">
-        <h3 >{props.recipe.label}</h3>
+        <h3 >{props.label}</h3>
       </div>
     </div>
     <div className="grid-x grid-margin-x">
-      <div className="cell small-2 small-offset-1">
-        <img src={props.recipe.image}></img>
+      <div className="cell small-3 small-offset-1">
+        <img src={props.image}></img>
       </div>
-      <div className="cell small-6">
+      <div className="cell small-4">
       <ul>
-        Calories per serving: {Math.round(props.recipe.calories / props.recipe.yield)} <br/>
-        Servings: {props.recipe.yield} <br/>
+        Calories per serving: {Math.round(props.calories / props.yield)} <br/>
+        Servings: {props.yield} <br/>
         Ingredients: <br/>
         <ul>
           {ingredientList}
         </ul>
       </ul>
       </div>
-      <div className="cell small-2">
+      <div className="cell auto">
       <PieChart className="macros"
         data={[
         { title: 'Carbs', value: carbs, color: '#E38627' },

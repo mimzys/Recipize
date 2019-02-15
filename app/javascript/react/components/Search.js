@@ -108,7 +108,9 @@ class Search extends Component {
   }
 
   render() {
+    console.log(this.props.location.pathname)
     console.log(this.state)
+
     let showResults
     let recipesArray
     recipesArray = this.state.hits.map((hit, index) => {
@@ -117,14 +119,21 @@ class Search extends Component {
           index={index}
           key={index}
           recipe={hit.recipe}
+          path={this.props.location.pathname + this.props.location.search}
+          digest={hit.recipe.digest}
+          ingredients={hit.recipe.ingredients}
+          yield={hit.recipe.yield}
+          label={hit.recipe.label}
+          image={hit.recipe.image}
+          calories={hit.recipe.calories}
         />
       )
     })
     let searchAlert
     if (this.state.q === "undefined" || this.state.hits.length === 0 && this.state.formPayload) {
-      searchAlert = this.generateAlert("warning", "No Matching Recipes!", "Please widen your search!")
+      searchAlert = this.generateAlert("warning", "No Matching Recipes!  ", "Please widen your search!  ")
     } else if (this.state.q !== "") {
-      searchAlert = this.generateAlert("success", "Success!", "Deliciousness Awaits!")
+      searchAlert = this.generateAlert("success", "Success!  ", "Deliciousness Awaits!  ")
     }
     let icon = []
     console.log(Object.keys(searchConstants.NUTRIENTS).map(key => searchConstants.NUTRIENTS[key].label + " (" + searchConstants.NUTRIENTS[key].unit + ")"))

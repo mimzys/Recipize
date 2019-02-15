@@ -128,7 +128,7 @@ $alert-callout-subtle-small-font-scale: 80%;
   &.success {
     background: $light-gray;
     color: $dark-gray;
-    border-left: $alert-callout-subtle-border-left-width solid $success-color;
+    border-left: $alert-callout-subtle-border-left-width solid #75d68d;
   }
 
   &.alert {
