@@ -126,6 +126,8 @@ class Search extends Component {
           label={hit.recipe.label}
           image={hit.recipe.image}
           calories={hit.recipe.calories}
+          url={hit.recipe.url}
+          button="Favorite!"
         />
       )
     })

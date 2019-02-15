@@ -20,7 +20,7 @@ const RecipeList = (props) => {
   console.log(props.recipe)
 
   return(
-    <Link to={{ pathname: `${props.path}/${props.index}`, state: { recipe: props.recipe, path: props.path }, component: {RecipeShow} }} >
+    <Link to={{ pathname: `${props.path}/${props.index}`, state: { digest: props.digest, yield: props.yield, ingredients:props.ingredients, recipe:props.recipe, label: props.label, image: props.image, calories: props.calories, url: props.url, button: props.button }, component: {RecipeShow} }} >
     <div className="grid-x">
       <div className="cell small-offset-1">
         <h3 >{props.label}</h3>
