@@ -57,14 +57,14 @@ svg{
 }
 
 .grid-x {
-    font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
+    font-family: 'Quattrocento Sans', sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
     margin-bottom: 10px;
   }
 
 .grid-x
   h3
     {
-      font-family: 'Quattrocento Sans', sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
+      font-family: 'Quattrocento Sans', sans-serif; font-size: 30px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
       margin-top: 1rem;
       margin-bottom: .7rem;
     }
@@ -79,11 +79,11 @@ svg{
   }
 
 .button {
-  font-size: 18px;
+  font-size: 30px;
 }
 
 .input{
-  font-size: 18px
+  font-size: 30px
 }
 
 .search {background:url(https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg) no-repeat center center fixed; background-size:cover;}
@@ -96,7 +96,7 @@ svg{
 
 .search input:focus {outline: 0;background:transparent;color: #0d1d2d;background-color: white;opacity: .8;text-shadow: 2px 2px 5px transparent;}
 
-.search button {position: relative;float: right;border: 0;padding: 0;cursor: pointer;height: 80px;width: 180px;color: #fff;background: transparent;border-left: 1px solid #fff;border-radius: 0 3px 3px 0; font-size: 24px; color: white; text-shadow: 2px 2px 5px black}
+.search button {position: relative;float: right;border: 0;padding: 0;cursor: pointer;height: 80px;width: 180px;color: #fff;background: transparent;border-left: 1px solid #fff;border-radius: 0 3px 3px 0; font-size: 30px; color: white; text-shadow: 2px 2px 5px black}
 
 .search button:hover {background: #75d68d;color:#444;text-shadow: 2px 2px 5px transparent}
 .search button:active {box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);}
@@ -105,7 +105,7 @@ svg{
 
 .accordion-title{
   text-shadow: 2px 2px 5px black;
-  font-family: 'Quattrocento Sans', sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
+  font-family: 'Quattrocento Sans', sans-serif; font-size: 30px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
 
 }
 
@@ -117,12 +117,13 @@ svg{
         border: 1px solid #fff;
         outline: 0;
         background:transparent;
-        font-size: 14px;
+        font-size: 20px;
         color: white;
-        max-width: 10rem;
+        max-width: 17rem;
         margin-right: 0.3rem;
-        height: 2rem;
+        height: 3.25rem;
         text-shadow: .5px .5px 4px #0d1d2d;
+        font-size: 30px;
       }
 
       .menu
@@ -201,9 +202,9 @@ path {
 .recipelist{
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.16);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  margin-right: 9.375rem;
-  margin-left: 9.375rem;
-  margin-top: 1.5625rem;
+  margin-right: 25rem;
+  margin-left: 25rem;
+  margin-top: 2rem;
   background: #fff;
   border: 1px solid;
   border-color: #e1edf2;
@@ -220,14 +221,14 @@ path {
 }
 
 .recipeshow{
-  margin-right: 4rem;
-  margin-left: 4rem;
+  margin-right: 11rem;
+  margin-left: 11rem;
 }
 
 .button-group
   .button{
     margin-top: 5px;
-    font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
+    font-family: 'Quattrocento Sans', sans-serif; font-size: 30px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
     background-color: #D9464D;
   }
 
@@ -273,7 +274,7 @@ a:focus{
 
 .grid-container
   input.cell {
-      font-family: 'Quattrocento Sans', sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
+      font-family: 'Quattrocento Sans', sans-serif; font-size: 30px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
       padding-top: 1.25rem;
       padding-right: 1rem;
       padding-bottom: 1.25rem;
@@ -289,9 +290,11 @@ a:focus{
 .top-bar-left
   a {
     padding-left: 1rem;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
     text-shadow: 3px 3px 7px #D9464D;
     font-family: 'Monoton', cursive;
-    font-size: 50px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+    font-size: 70px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
     color: white;
     text-decoration: underline;
     text-decoration-style: dotted;
@@ -304,7 +307,7 @@ a:focus{
 
 .top-bar-right
   .menu {
-    font-size: 23px;
+    font-size: 36px;
     text-shadow: 1px 1px 7px #e01156;
     background-color: transparent;
   }
@@ -321,6 +324,6 @@ a:focus{
 .accordion-content
   label
     {
-      font-family: 'Quattrocento Sans', sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
+      font-family: 'Quattrocento Sans', sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px;
 
     }
