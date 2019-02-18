@@ -20,7 +20,7 @@ const RecipeList = (props) => {
 
   return(
     <div className="recipelist">
-    <div className="grid-y">
+    <div className="grid-y grid-container-fluid">
     <Link to={{ pathname: `${props.path}/${props.index}`, state: {
       digest: props.digest, yield: props.yield, ingredients:props.ingredients,
       recipe:props.recipe, label: props.label, image: props.image,
@@ -33,10 +33,10 @@ const RecipeList = (props) => {
         </div>
       </div>
       <div className="grid-x grid-margin-x">
-        <div className="cell small-3">
+        <div className="cell small-3 shrink">
           <img src={props.image}></img>
         </div>
-        <div className="cell small-6">
+        <div className="cell small-6 shrink">
           <ul>
             Calories per serving: {Math.round(props.calories / props.yield)}
             <br/>

@@ -63,7 +63,7 @@ const RecipeShow = (props) => {
   }
 
   return(
-    <div>
+    <div className="grid-container fluid">
       <div className="grid-x">
         <div className="cell small-offset-1">
           <h2>{props.location.state.label}</h2>
@@ -103,13 +103,13 @@ const RecipeShow = (props) => {
       </div>
       <div className="recipeshow">
       <div className="grid-y">
-      <div className="grid-x">
-        <div className="cell small-5">
+      <div className="grid-x grid-margin-x">
+        <div className="cell small-6">
           <MicroTable
             digest={props.location.state.digest}
           />
         </div>
-        <div className="cell auto small-offset-1">
+        <div className="cell small-6">
           <div className="expanded button-group">
             <a href={props.location.state.url} className="button">
               Let's Get Cooking!
