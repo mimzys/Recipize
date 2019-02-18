@@ -46,11 +46,15 @@ ActiveRecord::Schema.define(version: 2019_02_13_153019) do
     t.float "calories", null: false
     t.text "dietLabels", default: [], array: true
     t.text "healthLabels", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_user_favorites_on_recipe_id"
     t.index ["user_id"], name: "index_user_favorites_on_user_id"
   end

@@ -10,6 +10,7 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.float :calories, null: false
       t.text :dietLabels, array: true, default: []
       t.text :healthLabels, array: true, default: []
+      t.timestamps null: false
     end
   end
 end

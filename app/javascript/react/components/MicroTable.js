@@ -20,7 +20,8 @@ const MicroTable = (props) => {
             total={subNtr.total}
             daily={dv}
           />
-        )})
+        )
+      })
     }
     let dv = "---"
     if (ntr.hasRDI) {
@@ -34,7 +35,7 @@ const MicroTable = (props) => {
         total={ntr.total}
         daily={dv}
       />
-      ]
+    ]
     return parentNtr.concat(ntrSub)
   })
 

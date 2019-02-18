@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import 'babel-polyfill'
 import { browserHistory, Link, Route, RouteHandler } from 'react-router';
 import RecipeList from './RecipeList'
-import * as searchConstants from './SearchConstants'
-import SearchForm from './SearchForm'
 
 class Profile extends Component {
   constructor(props){
@@ -23,21 +20,20 @@ class Profile extends Component {
           hits: responseBody.recipes
         })
       })
-
-    }
-
+  }
 
   render() {
 
-    console.log(this.state.hits)
     let recipesArray
     recipesArray = this.state.hits.map((hit, index) => {
       return(
+
         <RecipeList
           index={index}
           key={index}
           recipe={hit}
-          path={"search?q=" + hit.label.split(" ", 1) + this.props.location.search}
+          path={("search?q=" + hit.label.split(" ", 1) +
+            this.props.location.search).toLowerCase()}
           digest={hit.nutrients}
           ingredients={hit.ingredients}
           yield={hit.yield}
@@ -49,10 +45,11 @@ class Profile extends Component {
         />
       )
     })
+
     return (
       <div className="x-grid">
         <div className="cell small-4">
-        {recipesArray}
+          {recipesArray}
         </div>
         <div className="cell small-4">
         </div>

@@ -2,7 +2,7 @@ class Api::V1::RecipesController < ApplicationController
    skip_before_action :verify_authenticity_token
 
   def index
-    render json: current_user.recipes
+    render json: current_user.recipes.order(created_at: :desc)
   end
 
   def create

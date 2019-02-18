@@ -3,6 +3,7 @@ class CreateUserFavorites < ActiveRecord::Migration[5.2]
     create_table :user_favorites do |t|
       t.belongs_to :user, null: false, index: true
       t.belongs_to :recipe, null: false, index: true
+      t.timestamps null: false
     end
   end
 end

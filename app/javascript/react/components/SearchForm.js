@@ -102,13 +102,14 @@ class SearchForm extends Component {
   }
 
   generateAlert(type = "primary", strongText, softText) {
-    //posssible types: ["success"(green), "alert"(red), "primary"(blue), "warning"(yellow)]
     let alertClass = `callout alert-callout-subtle ${type} radius`
     return(
       <div data-closable className={alertClass}>
         <strong>{strongText}</strong>
         {softText}
-        <button className="close-button" aria-label="Dismiss alert" type="button" data-close>
+        <button className="close-button" aria-label="Dismiss alert"
+          type="button" data-close
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -131,56 +132,53 @@ class SearchForm extends Component {
     $(document).foundation();
     console.log(this.state)
 
-    //this.setInitialQ(this.props.q)
     return(
       <div>
         <div>
           {this.props.searchAlert}
         </div>
         <form
-        className="grid-container"
-
+          className="grid-container"
           onSubmit={this.handleSubmit}
           ref={form => this.form = form}>
           <input
+            type="search"
             placeholder="Search for..."
             ref={input => this.search = input}
             value={this.state.q}
             onChange={this.handleInputChange}
             className="cell"
           />
-
-
-              <ul className="accordion" data-accordion data-allow-all-closed="true">
-                <li className="accordion-item" data-accordion-item>
-                  <a href="#" className="accordion-title">Health Restrictions</a>
-                  <div className="accordion-content" data-tab-content >
-                    {this.createHealthCheckboxes()}
-                  </div>
-                </li>
-                <li className="accordion-item" data-accordion-item>
-                  <a href="#" className="accordion-title">Diet Restrictions</a>
-                  <div className="accordion-content" data-tab-content>
-                    <div onChange={this.toggleDietRadio}>
-                      {this.createDietRadio()}
-                    </div>
-                  </div>
-                </li>
-                <li className="accordion-item" data-accordion-item>
-                  <a href="#" className="accordion-title">Calories</a>
-                  <div className="accordion-content" data-tab-content>
-                    <MinMax
-                      key="cal"
-                      id={"cal"}
-                      onChange={this.handleCalChange}
-                      unit={"kcal(s)"}
-                    />
-                  </div>
-                </li>
-              </ul>
-            <div className="expanded button-group">
-              <input type="submit" value="Submit" className="button"/>
-            </div>
+          <ul className="accordion" data-accordion data-allow-all-closed="true">
+            <li className="accordion-item" data-accordion-item>
+              <a href="#" className="accordion-title">Health Restrictions</a>
+              <div className="accordion-content" data-tab-content >
+                {this.createHealthCheckboxes()}
+              </div>
+            </li>
+            <li className="accordion-item" data-accordion-item>
+              <a href="#" className="accordion-title">Diet Restrictions</a>
+              <div className="accordion-content" data-tab-content>
+                <div onChange={this.toggleDietRadio}>
+                  {this.createDietRadio()}
+                </div>
+              </div>
+            </li>
+            <li className="accordion-item" data-accordion-item>
+              <a href="#" className="accordion-title">Calories</a>
+              <div className="accordion-content" data-tab-content>
+                <MinMax
+                  key="cal"
+                  id={"cal"}
+                  onChange={this.handleCalChange}
+                  unit={"kcal(s)"}
+                />
+              </div>
+            </li>
+          </ul>
+          <div className="expanded button-group">
+            <input type="submit" value="Submit" className="button"/>
+          </div>
         </form>
         <script type="text/javascript">
           $(document).foundation()
