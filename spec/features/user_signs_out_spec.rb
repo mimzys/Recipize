@@ -12,13 +12,12 @@ feature 'user signs out', %Q{
 
   scenario 'authenticated user signs out' do
     user = FactoryBot.create(:user)
+    visit '/'
 
-    visit new_user_session_path
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: user.password
 
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-
-    click_button 'Log in'
+    click_button 'Log In'
 
     expect(page).to have_content('Signed in successfully')
 
