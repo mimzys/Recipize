@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import 'babel-polyfill'
 import { browserHistory, Link, Route, RouteHandler } from 'react-router';
 import RecipeList from './RecipeList'
-import * as searchConstants from './SearchConstants'
+import * as searchConstants from '../constants/SearchConstants'
 import SearchForm from './SearchForm'
 
 class Search extends Component {
