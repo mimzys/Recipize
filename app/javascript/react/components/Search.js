@@ -55,7 +55,6 @@ class Search extends Component {
       add_props += `&calories=${this.minMax(this.state.formPayload.calMin, this.state.formPayload.calMax)}`
     }
     const api_call = await fetch(`https://api.edamam.com/search?q=${this.state.formPayload.q}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
-    // const api_call = await fetch(`https://api.edamam.com/search?q={potato}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
 
     const data = await api_call.json();
     this.setState({
@@ -70,7 +69,6 @@ class Search extends Component {
   }
 
   generateAlert(type = "primary", strongText, softText) {
-    //posssible types: ["success"(green), "alert"(red), "primary"(blue), "warning"(yellow)]
     let alertClass = `callout alert-callout-subtle ${type} radius`
     return(
       <div data-closable className={alertClass}>
@@ -120,6 +118,8 @@ class Search extends Component {
           key={index}
           recipe={hit.recipe}
           path={this.props.location.pathname + this.props.location.search}
+          pathname={this.props.location.pathname}
+          search={this.props.location.search}
           digest={hit.recipe.digest}
           ingredients={hit.recipe.ingredients}
           yield={hit.recipe.yield}

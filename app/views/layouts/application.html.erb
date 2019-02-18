@@ -21,19 +21,18 @@
       <section class="top-bar-right">
         <ul class="menu">
           <%- if current_user -%>
-            <li><%= link_to 'My Account', '/profile' %></li>
+            <li><%= link_to 'My Favorites', '/profile' %></li>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>
-            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-            <li><%= link_to 'Sign In', new_user_session_path %></li>
+
+            <li>
             <%= form_for(:user, :url => session_path(:user)) do |f| %>
-              <%= f.text_field :email %>
-              <%= f.password_field :password %>
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-              <%= f.submit 'Sign in' %>
-              <%= link_to "Forgot your password?", new_password_path(:user) %>
+              <%= f.text_field :email, placeholder: "email"%>
+              <%= f.password_field :password, placeholder: "password" %>
+              <%= f.submit 'Submit', class: "loginsubmit", value: "Log In" %>
             <% end %>
+            </li>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <%- end -%>
         </ul>
       </section>
