@@ -1,3 +1,4 @@
+[![Codeship Status for mimzys/Recipize](https://app.codeship.com/projects/f090d3a0-15e9-0137-672b-429b16ef079e/status?branch=master)](https://app.codeship.com/projects/327813)
 # Recipize
 
 In principle, this is a webapp that incorporates nutritional information into the online search for recipes using an integration with the Edamam API. Users can search by key words and various nutritional parameters. When a user is signed in, they can also favorite recipes for further access.
