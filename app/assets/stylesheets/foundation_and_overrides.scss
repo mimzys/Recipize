@@ -56,7 +56,7 @@
 // @include motion-ui-transitions;
 // @include motion-ui-animations;
 
-$input-number-size: 80px;
+$input-number-size: 5rem;
 
 .input-number-group {
   display: flex;
@@ -68,12 +68,12 @@ $input-number-size: 80px;
   }
 
   .input-group-button {
-    line-height: calc(#{$input-number-size}/2 - 5px);
+    line-height: calc(#{$input-number-size}/2 - 0.3125rem);
   }
 
   .input-number {
     width: $input-number-size;
-    padding: 0 12px;
+    padding: 0 0.75rem;
     vertical-align: top;
     text-align: center;
     outline: none;
@@ -84,7 +84,7 @@ $input-number-size: 80px;
   .input-number,
   .input-number-decrement,
   .input-number-increment {
-    border: 1px solid $medium-gray;
+    border: 0.0625rem solid $medium-gray;
     height: $input-number-size/2;
     user-select: none;
     border-radius: $global-radius;
@@ -123,8 +123,8 @@ $alert-callout-subtle-small-font-scale: 80%;
   color: $dark-gray;
   border: 0;
   border-left: $alert-callout-subtle-border-left-width solid $dark-gray;
-  box-shadow: 0 5px 8px -6px rgba(0,0,0, 0.2);
-  font-size: 20px;
+  box-shadow: 0  0.3125rem 0.5rem -0.375rem rgba(0,0,0, 0.2);
+  font-size: 1.25rem;
 
   &.success {
     background: $light-gray;
