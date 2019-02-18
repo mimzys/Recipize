@@ -33,4 +33,5 @@ describe Nutrient do
   it { should_not have_valid(:recipe_id).when("") }
 
   it { should belong_to(:macro) }
+  it { should have_many(:subs) }
 end
