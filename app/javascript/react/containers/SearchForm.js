@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import 'babel-polyfill'
 import { browserHistory, Link, Route, RouteHandler } from 'react-router';
-import * as searchConstants from './SearchConstants'
+import * as searchConstants from '../constants/SearchConstants'
 import { Dropdown, Accordion } from 'foundation-sites';
 import jQuery from "jquery";
-import Checkbox from './Checkbox';
-import MinMax from './MinMax'
+import Checkbox from '../components/Checkbox';
+import MinMax from '../components/MinMax'
 
 
 class SearchForm extends Component {

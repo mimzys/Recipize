@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, browserHistory, Route, IndexRoute } from 'react-router';
 import RecipeShow from './RecipeShow';
 import Search from './Search';
-import Home from './Home';
+import Home from '../components/Home';
 import Profile from './Profile';
 
 const App = props => {
