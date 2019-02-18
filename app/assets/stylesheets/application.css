@@ -182,6 +182,17 @@ svg{
     padding-left: 1rem;
   }
 
+  .flash-alert{
+      background-attachment: fixed;
+      background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: white;
+      text-shadow: 0.125rem 0.125rem 0.3125rem black;
+      padding-left: 1rem;
+    }
+
 h2 {
   text-align: center;
   margin-top: 1.25rem;

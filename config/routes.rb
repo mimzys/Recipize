@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
   root 'homes#index'
-  def checkSearch(route)
-    if route[-2] == '/'
-      bindgin.pry
-      return route[0..-2]
-    end
-    return route
-  end
-
-  # def checkView(route)
-  #   if
-  # end
   get '/search', to: 'homes#index'
   get '/search:search', to: 'homes#index'
   get '/search:search/:id', to: 'homes#index'
