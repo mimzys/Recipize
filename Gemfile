@@ -65,3 +65,4 @@ gem 'webpacker', '~> 3.3'
 gem 'font-awesome-rails'
 gem "active_model_serializers"
 gem "bootstrap-sass-rails", "~> 2.2.2.0"
+gem 'rails_12factor'
