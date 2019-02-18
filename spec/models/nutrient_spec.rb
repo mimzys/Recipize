@@ -29,8 +29,7 @@ describe Nutrient do
   it { should belong_to(:recipe) }
 
   Nutrient.new(daily: 34, hasRDI: true, label: "macro", tag: "banana", total: 542, unit: "mg", recipe_id: 1)
-  it { should have_valid(:macro_id).when(1, nil) }
-  it { should_not have_valid(:recipe_id).when("") }
+  it { should have_valid(:macro_id).when(1, nil, "") }
 
   it { should belong_to(:macro) }
   it { should have_many(:subs) }
