@@ -124,6 +124,7 @@ $alert-callout-subtle-small-font-scale: 80%;
   border: 0;
   border-left: $alert-callout-subtle-border-left-width solid $dark-gray;
   box-shadow: 0 5px 8px -6px rgba(0,0,0, 0.2);
+  font-size: 20px;
 
   &.success {
     background: $light-gray;
