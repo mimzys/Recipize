@@ -25,14 +25,17 @@
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>
 
+            <% unless controller_name == "registrations" || controller_name == "sessions"%>
             <li>
-            <%= form_for(:user, :url => session_path(:user)) do |f| %>
-              <%= f.text_field :email, placeholder: "email"%>
-              <%= f.password_field :password, placeholder: "password" %>
-              <%= f.submit 'Submit', class: "loginsubmit", value: "Log In" %>
-            <% end %>
+              <%= form_for(:user, :url => session_path(:user)) do |f| %>
+                <%= f.text_field :email, placeholder: "email"%>
+                <%= f.password_field :password, placeholder: "password" %>
+                <%= f.submit 'Submit', class: "loginsubmit", value: "Log In" %>
+                <% end %>
             </li>
+
             <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <% end %>
           <%- end -%>
         </ul>
       </section>
