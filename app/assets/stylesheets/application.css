@@ -16,6 +16,10 @@
  *= require font-awesome
  */
 
+.deviselinks{
+  padding-left: 21%;
+  padding-right: 21%;
+}
 
 svg{
   height: 5%;
@@ -23,12 +27,11 @@ svg{
 }
 
 .top-bar{
-    background-attachment: fixed;
-    background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
-    background-position: center;
+  background-attachment: fixed;
+  background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
 .top-bar-left{
@@ -36,45 +39,42 @@ svg{
 }
 
 .accordion-item{
-    background-attachment: fixed;
-    background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
-    background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+  background-attachment: fixed;
+  background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .home{
-    background-attachment: fixed;
-    background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
-    background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+  background-attachment: fixed;
+  background-image: url("https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .body{
   background-color: #c7893c;
-
 }
 
 .grid-x {
-    font-family: 'Quattrocento Sans', sans-serif; font-size: 1.5rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
-    margin-bottom: 0.625rem;
+  font-family: 'Quattrocento Sans', sans-serif; font-size: 1.5rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
+  margin-bottom: 0.625rem;
+}
+
+.grid-x
+  h3 {
+    font-family: 'Quattrocento Sans', sans-serif; font-size: 1.875rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
+    margin-top: 1rem;
+    margin-bottom: .7rem;
+    margin-right: auto;
   }
 
-.grid-x
-  h3
-    {
-      font-family: 'Quattrocento Sans', sans-serif; font-size: 1.875rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
-      margin-top: 1rem;
-      margin-bottom: .7rem;
-      margin-right: auto;
-    }
-
 
 
 .grid-x
-  h2
-  {
+  h2 {
     font-family: 'Quattrocento Sans', sans-serif; font-size: 1.875rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
     margin-top: 1.875rem;
     margin-bottom: 1.875rem;
@@ -89,27 +89,90 @@ svg{
   font-size: 1.875rem
 }
 
-.search {background:url(https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg) no-repeat center center fixed; background-size:cover;}
+.search {
+  background: url(https://adventuresincooking.com/wp-content/uploads/2017/11/Saffron-Star-Bread-by-Eva-Kosmas-Flores001-22.jpg) no-repeat center center fixed;
+  background-size:cover;
+}
 
-.search {width: 62.5rem;height: 5rem;margin: 18.75rem auto;background: #444;background: rgba(0,0,0,.2);border-radius:  0.1875rem;border: 0.0625rem solid #fff;}
+.search {
+  width: 62.5rem;
+  height: 5rem;
+  margin: 18.75rem auto;
+  background: #444;
+  background: rgba(0,0,0,.2);
+  border-radius:  0.1875rem;
+  border: 0.0625rem solid #fff;
+}
 
-.search input:hover{color: #0d1d2d;background-color: white;opacity: .8;text-shadow: 0.125rem 0.125rem 0.3125rem transparent;}
+.search input:hover {
+  color: #0d1d2d;
+  background-color: white;
+  opacity: .8;
+  text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
+}
 
-.search input {width: 51.1rem;padding: 1.25rem 0.625rem;float: left;color: #ccc;border: 0;background: transparent;border-radius: 0.1875rem 0 0 0.1875rem; height: 5rem; font-size: 1.5rem; color: white; text-shadow: 0.125rem 0.125rem 0.3125rem black}
+.search input {
+  width: 51.1rem;
+  padding: 1.25rem 0.625rem;
+  float: left;
+  color: #ccc;
+  border: 0;
+  background: transparent;
+  border-radius: 0.1875rem 0 0 0.1875rem;
+  height: 5rem;
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 0.125rem 0.125rem 0.3125rem black
+}
 
-.search input:focus {outline: 0;background:transparent;color: #0d1d2d;background-color: white;opacity: .8;text-shadow: 0.125rem 0.125rem 0.3125rem transparent;}
+.search input:focus {
+  outline: 0;
+  background: transparent;
+  color: #0d1d2d;
+  background-color: white;
+  opacity: .8;
+  text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
+}
 
-.search button {position: relative;float: right;border: 0;padding: 0;cursor: pointer;height: 5rem;width: 11.25rem;color: #fff;background: transparent;border-left: 0.0625rem solid #fff;border-radius: 0 0.1875rem 0.1875rem 0; font-size: 1.875rem; color: white; text-shadow: 0.125rem 0.125rem 0.3125rem black}
+.search button {
+  position: relative;
+  float: right;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  height: 5rem;
+  width: 11.25rem;
+  color: #fff;
+  background: transparent;
+  border-left: 0.0625rem solid #fff;
+  border-radius: 0 0.1875rem 0.1875rem 0;
+  font-size: 1.875rem;
+  color: white;
+  text-shadow: 0.125rem 0.125rem 0.3125rem black;
+}
 
-.search button:hover {background: #75d68d;color:#444;text-shadow: 0.125rem 0.125rem 0.3125rem transparent}
-.search button:active {box-shadow: 0rem 0rem 0.75rem 0rem rgba(225, 225, 225, 1);}
+.search button:hover {
+  background: #75d68d;
+  color: #444;
+  text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
+}
 
-.search button:focus {outline: 0;}
+.search button:active {
+  box-shadow: 0rem 0rem 0.75rem 0rem rgba(225, 225, 225, 1);
+}
+
+.search button:focus {
+  outline: 0;
+}
 
 .accordion-title{
   text-shadow: 0.125rem 0.125rem 0.3125rem black;
-  font-family: 'Quattrocento Sans', sans-serif; font-size: 1.875rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
-
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 1.875rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 1.438rem;
 }
 
 .menu
@@ -129,22 +192,20 @@ svg{
         font-size: 1.875rem;
       }
 
-      .menu
-        li
-          form
-            label {
-
-              color: white;
-
-            }
+.menu
+  li
+    form
+      label {
+        color: white;
+      }
 
 .menu
   li
     form
-      input.loginsubmit:hover{
-    background-color: #75d68d;
-    color:#444
-}
+      input.loginsubmit:hover {
+        background-color: #75d68d;
+        color:#444
+      }
 
 .menu
   li
@@ -215,8 +276,8 @@ path {
 }
 
 .new_user {
-  padding-left: 10rem;
-  padding-right: 10rem;
+  padding-left: 21%;
+  padding-right: 21%;
 }
 
 .recipelist{
@@ -249,11 +310,15 @@ path {
 .button-group
   .button{
     margin-top: 0.6rem;
-    font-family: 'Quattrocento Sans', sans-serif; font-size: 1.875rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-size: 1.875rem;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1.438rem;
     background-color: #D9464D;
     text-align: center;
     vertical-align: middle;
-
   }
 
 table{
@@ -266,44 +331,51 @@ table{
     background-color: #75d68d;
   }
 
-.button button:hover {background: #fff;color:#e01156;text-shadow: 0.125rem 0.125rem 0.3125rem transparent}
+.button button:hover {
+  background: #fff;
+  color:#e01156;
+  text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
+}
 
 .accordion-item.is-active
-  .accordion-title{
+  .accordion-title  {
     text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
-
   }
 
 .accordion-item
-  .accordion-title:visited{
+  .accordion-title:visited {
+    text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
+  }
+
+a:hover {
   text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
 }
 
-a:hover{
+a:visited {
   text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
 }
 
-a:visited{
+a:active {
   text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
 }
 
-a:active{
-  text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
-}
-
-a:focus{
+a:focus {
   text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
 }
 
 .accordion-item.is-active:hover
   .accordion-title{
     text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
-
   }
 
 .grid-container
   input.cell {
-      font-family: 'Quattrocento Sans', sans-serif; font-size: 1.875rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-size: 1.875rem;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 1.438rem;
       padding-top: 1.25rem;
       padding-right: 1rem;
       padding-bottom: 1.25rem;
@@ -323,14 +395,18 @@ a:focus{
     padding-bottom: 1rem;
     text-shadow: 0.1875rem 0.1875rem 0.4375rem #D9464D;
     font-family: 'Monoton', cursive;
-    font-size: 4.375rem; font-style: normal; font-variant: normal; font-weight: 700; line-height: 1.65rem;
+    font-size: 4.375rem;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 1.65rem;
     color: white;
     text-decoration: underline;
     text-decoration-style: dotted;
   }
 
 .top-bar-left
-  a:hover{
+  a:hover {
   text-shadow: 0.125rem 0.125rem 0.3125rem transparent;
   }
 
@@ -351,8 +427,11 @@ a:focus{
     }
 
 .accordion-content
-  label
-    {
-      font-family: 'Quattrocento Sans', sans-serif; font-size: 1.5rem; font-style: normal; font-variant: normal; font-weight: 400; line-height: 1.438rem;
-
-    }
+  label {
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1.438rem;
+  }
