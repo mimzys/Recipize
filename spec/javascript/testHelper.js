@@ -1,11 +1,17 @@
 import { shallow, mount } from 'enzyme';
 import jasmineEnzyme from 'jasmine-enzyme';
+import fetchPonyfill from 'fetch-ponyfill';
+const {fetch, Request, Response, Headers} = fetchPonyfill({});
 import React from 'react';
 import 'jasmine-ajax';
 
 Object.assign(global, {
   jasmineEnzyme,
   mount,
+  fetch,
+  Request,
+  Response,
+  Headers,
   React,
   shallow,
 });
