@@ -4,6 +4,9 @@ import { browserHistory, Link, Route, RouteHandler } from 'react-router';
 import RecipeList from './RecipeList'
 import * as searchConstants from '../constants/SearchConstants'
 import SearchForm from './SearchForm'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { searchRecipes } from '../../../packs/application'
 
 class Search extends Component {
   constructor(props){
@@ -57,6 +60,8 @@ class Search extends Component {
     const api_call = await fetch(`https://api.edamam.com/search?q=${this.state.formPayload.q}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
 
     const data = await api_call.json();
+
+
     this.setState({
       q: data.q,
       from: data.from,
@@ -66,6 +71,7 @@ class Search extends Component {
       more: data.more,
       hits: data.hits
     })
+
   }
 
   generateAlert(type = "primary", strongText, softText) {
@@ -153,5 +159,15 @@ class Search extends Component {
     )
   }
 }
+
+// function mapStateToProps(state, ownProps) {
+//   return {hits: state.hits}
+// }
+//
+// function mapDispatchToProps(dispatch) {
+//   return {actions: bindActionCreators(searchRecipes, dispatch)}
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(Search);
 
 export default Search;
