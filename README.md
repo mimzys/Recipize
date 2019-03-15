@@ -11,9 +11,9 @@ Or you can view the live heroku site and play with it here: https://rocky-peak-5
 
 ### Prerequisites
 
-ruby version: 2.4.5
+- ruby version: 2.4.5
   You can check your current version in terminal with: ```ruby -v``` or ```chruby``` (if you have it installed)
-psql
+- psql
 
 ### Installing
 
