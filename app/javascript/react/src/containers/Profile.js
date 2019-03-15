@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { browserHistory, Link, Route, RouteHandler } from 'react-router';
 import RecipeList from './RecipeList'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { searchRecipes, setQuery } from '../../../packs/application'
 
 class Profile extends Component {
   constructor(props){
@@ -16,6 +19,7 @@ class Profile extends Component {
         let responseBody = response.json()
         return responseBody
       }).then(responseBody => {
+        this.props.dispatch({type: 'SEARCH_RECIPES', hits: responseBody.recipes})
         this.setState({
           hits: responseBody.recipes
         })
@@ -25,7 +29,7 @@ class Profile extends Component {
   render() {
 
     let recipesArray
-    recipesArray = this.state.hits.map((hit, index) => {
+    recipesArray = this.props.hits.map((hit, index) => {
       return(
 
         <RecipeList
@@ -58,4 +62,10 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    hits: state.hits
+  }
+}
+
+export default connect(mapStateToProps)(Profile);

@@ -6,7 +6,7 @@ import * as searchConstants from '../constants/SearchConstants'
 import SearchForm from './SearchForm'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { searchRecipes } from '../../../packs/application'
+import { searchRecipes, setQuery } from '../../../packs/application'
 
 class Search extends Component {
   constructor(props){
@@ -72,6 +72,7 @@ class Search extends Component {
       hits: data.hits
     })
 
+    this.props.dispatch({type: 'SEARCH_RECIPES', hits: data.hits})
   }
 
   generateAlert(type = "primary", strongText, softText) {
@@ -109,15 +110,15 @@ class Search extends Component {
       formPayload: newFormPayload,
     })
     this.getRecipes()
+    this.props.dispatch({type: 'SET_QUERY', q: this.props.location.search.slice(3) })
   }
 
   render() {
-    console.log(this.props.location.pathname)
-    console.log(this.state)
+    console.log(this.props.hits)
 
     let showResults
     let recipesArray
-    recipesArray = this.state.hits.map((hit, index) => {
+    recipesArray = this.props.hits.map((hit, index) => {
       return(
         <RecipeList
           index={index}
@@ -160,14 +161,11 @@ class Search extends Component {
   }
 }
 
-// function mapStateToProps(state, ownProps) {
-//   return {hits: state.hits}
-// }
-//
-// function mapDispatchToProps(dispatch) {
-//   return {actions: bindActionCreators(searchRecipes, dispatch)}
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Search);
 
-export default Search;
+const mapStateToProps = state => {
+  return {
+    hits: state.hits
+  }
+}
+
+export default connect(mapStateToProps)(Search);

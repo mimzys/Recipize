@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory, Link } from 'react-router';
 import PieChart from 'react-minimal-pie-chart';
 import MicroTable from '../components/MicroTable'
-
+import { connect } from 'react-redux';
 
 const RecipeShow = (props) => {
     let onClickFunction
@@ -31,7 +31,7 @@ const RecipeShow = (props) => {
   let handleFavorite = (event) => {
     event.target.style.backgroundColor = "#75d68d"
     event.target.text = "♡ Favorited! ♡"
-    postRecipe(props.location.state.recipe)
+    postRecipe(props.recipe)
   }
 
   let handleRemove = (event) => {
@@ -39,18 +39,29 @@ const RecipeShow = (props) => {
     event.target.text = "❥ Removed! ❥"
   }
 
-  let carbDigest = props.location.state.digest.find(i =>
-    Object.values(i).includes('CHOCDF'))
-  let fatDigest = props.location.state.digest.find(i =>
-    Object.values(i).includes('FAT'))
-  let proteinDigest = props.location.state.digest.find(i =>
-    Object.values(i).includes('PROCNT'))
+  let carbDigest
+  let fatDigest
+  let proteinDigest
 
-  let carbs = Math.round(carbDigest.total / props.location.state.yield)
-  let fat = Math.round(fatDigest.total / props.location.state.yield)
-  let protein = Math.round(proteinDigest.total / props.location.state.yield)
+  console.log(props)
+  let unit
+  if ('digest' in props.recipe) {
+    unit = props.recipe.digest
+  } else if ('nutrients' in props.recipe) {
+    unit = props.recipe.nutrients
+  }
+    carbDigest = unit.find(i =>
+      Object.values(i).includes('CHOCDF'))
+    fatDigest = unit.find(i =>
+      Object.values(i).includes('FAT'))
+    proteinDigest = unit.find(i =>
+      Object.values(i).includes('PROCNT'))
 
-  let ingredientList = props.location.state.ingredients.map((ingr, index) => {
+  let carbs = Math.round(carbDigest.total / props.recipe.yield)
+  let fat = Math.round(fatDigest.total / props.recipe.yield)
+  let protein = Math.round(proteinDigest.total / props.recipe.yield)
+
+  let ingredientList = props.recipe.ingredients.map((ingr, index) => {
     return(
       <li key={index}>{ingr.text} ({Math.round(ingr.weight)}g)</li>
     )
@@ -66,18 +77,18 @@ const RecipeShow = (props) => {
     <div className="grid-container fluid">
       <div className="grid-x">
         <div className="cell small-offset-1">
-          <h2>{props.location.state.label}</h2>
+          <h2>{props.recipe.label}</h2>
         </div>
       </div>
       <div className="grid-x grid-margin-x">
         <div className="cell small-2 small-offset-1">
-          <img src={props.location.state.image}></img>
+          <img src={props.recipe.image}></img>
         </div>
         <div className="cell small-6">
           <ul>
-            Calories per serving: {Math.round(props.location.state.calories /
-              props.location.state.yield)} <br/>
-            Servings: {props.location.state.yield} <br/>
+            Calories per serving: {Math.round(props.recipe.calories /
+              props.recipe.yield)} <br/>
+            Servings: {props.recipe.yield} <br/>
             Ingredients: <br/>
             <ul>
               {ingredientList}
@@ -106,12 +117,12 @@ const RecipeShow = (props) => {
       <div className="grid-x grid-margin-x">
         <div className="cell small-6">
           <MicroTable
-            digest={props.location.state.digest}
+            digest={unit}
           />
         </div>
         <div className="cell small-6">
           <div className="expanded button-group">
-            <a href={props.location.state.url} className="button">
+            <a href={props.recipe.url} className="button">
               Let's Get Cooking!
             </a>
             <a className="button" onClick={onClickFunction}>
@@ -125,4 +136,16 @@ const RecipeShow = (props) => {
     </div>
   )
 }
-export default RecipeShow;
+
+
+const mapStateToProps = state => {
+  let recipeState = state.hits[state.shownRecipe]
+  if ("recipe" in state.hits[state.shownRecipe]) {
+   recipeState = state.hits[state.shownRecipe].recipe
+  }
+  return {
+    recipe: recipeState
+  }
+}
+
+export default connect(mapStateToProps)(RecipeShow);

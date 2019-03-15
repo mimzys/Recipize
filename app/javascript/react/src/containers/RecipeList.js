@@ -2,6 +2,9 @@ import React from 'react';
 import { browserHistory, Link } from 'react-router';
 import PieChart from 'react-minimal-pie-chart';
 import RecipeShow from './RecipeShow'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setRecipeShow } from '../../../packs/application';
 
 const RecipeList = (props) => {
   let carbDigest= props.digest.find(i => Object.values(i).includes('CHOCDF'))
@@ -20,11 +23,8 @@ const RecipeList = (props) => {
 
   return(
     <div className="recipelist">
-    <div className="grid-y grid-container-fluid">
-    <Link to={{ pathname: `${props.path}/${props.index}`, state: {
-      digest: props.digest, yield: props.yield, ingredients:props.ingredients,
-      recipe:props.recipe, label: props.label, image: props.image,
-      calories: props.calories, url: props.url, button: props.button },
+    <div className="grid-y grid-container-fluid" onMouseOver={() => props.dispatch({type: "SET_RECIPE_SHOW", id: props.index})}>
+    <Link to={{ pathname: `${props.path}/${props.index}`, state: {button: props.button },
       component: {RecipeShow} }}
     >
       <div className="grid-x">
@@ -73,4 +73,4 @@ const RecipeList = (props) => {
   )
 };
 
-export default RecipeList;
+export default connect()(RecipeList);

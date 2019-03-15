@@ -5,8 +5,10 @@ import * as searchConstants from '../constants/SearchConstants'
 import { Dropdown, Accordion } from 'foundation-sites';
 import jQuery from "jquery";
 import Checkbox from '../components/Checkbox';
-import MinMax from '../components/MinMax'
-
+import MinMax from '../components/MinMax';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setQuery } from '../../../packs/application'
 
 class SearchForm extends Component {
   constructor(props) {
@@ -89,6 +91,7 @@ class SearchForm extends Component {
 
   handleInputChange = (event) => {
     event.preventDefault()
+    this.props.dispatch({type: 'SET_QUERY', q: this.search.value })
     this.setState({
       q: this.search.value
     })
@@ -96,6 +99,7 @@ class SearchForm extends Component {
 
   handleCalChange = (event) => {
     event.preventDefault()
+    // this.props.dispatch({type: 'SET_NUTRITION', [event.target.id]: event.target.value })
     this.setState({
       [event.target.id]: event.target.value
     })
@@ -188,4 +192,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+export default connect()(SearchForm);
