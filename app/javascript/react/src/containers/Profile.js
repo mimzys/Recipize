@@ -8,9 +8,6 @@ import { searchRecipes, setQuery } from '../../../packs/application'
 class Profile extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      hits: []
-    }
   }
 
   componentDidMount(){

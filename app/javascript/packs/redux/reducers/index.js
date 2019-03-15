@@ -1,6 +1,6 @@
 import { SEARCH_RECIPES, SET_QUERY, SET_CAL_MAX, SET_CAL_MIN, SET_HEALTH, SET_DIET, SET_RECIPE_SHOW } from '../actions/action-types'
 
-export const rootReducer = (state = { q: "", hits: []}, action) => {
+export const rootReducer = (state = { q: "", hits: [], health: [], digest: ""}, action) => {
   switch (action.type) {
     case SEARCH_RECIPES:
       return {

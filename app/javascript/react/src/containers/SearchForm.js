@@ -8,26 +8,19 @@ import Checkbox from '../components/Checkbox';
 import MinMax from '../components/MinMax';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setQuery } from '../../../packs/application'
+import { setQuery, setCalMax, setCalMin, setHealth, setDiet } from '../../../packs/application';
 
 class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      q: "",
-      from: null,
-      to: null,
-      selectedHealthCheckboxes: new Set(),
-      selectedDiet: "",
-      calMin: null,
-      calMax: null
+      selectedHealthCheckboxes: new Set()
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.toggleHealthCheckbox = this.toggleHealthCheckbox.bind(this)
     this.toggleDietRadio = this.toggleDietRadio.bind(this)
     this.handleCalChange = this.handleCalChange.bind(this)
-    this.setInitialQ = this.setInitialQ.bind(this)
   }
 
   toggleHealthCheckbox = label => {
@@ -39,12 +32,15 @@ class SearchForm extends Component {
     this.setState({
       selectedHealthCheckboxes: this.state.selectedHealthCheckboxes
     })
+    let health = []
+    if (this.state.selectedHealthCheckboxes.size > 0) {
+      this.state.selectedHealthCheckboxes.forEach((label) => health.push(label))
+    }
+    this.props.dispatch({type: 'SET_HEALTH', health: health })
   }
 
   toggleDietRadio = (event) => {
-    this.setState({
-      selectedDiet: event.target.value
-    })
+    this.props.dispatch({type: 'SET_DIET', diet: event.target.value })
   }
 
 
@@ -77,29 +73,21 @@ class SearchForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let formPayload = {
-      q: this.state.q,
-      from: this.state.from,
-      to: this.state.to,
-      health: this.state.selectedHealthCheckboxes,
-      diet: this.state.selectedDiet,
-      calMin: this.state.calMin,
-      calMax: this.state.calMax
-    };
-    this.props.trackSubmit(formPayload)
+    this.props.trackSubmit()
   }
 
   handleInputChange = (event) => {
     event.preventDefault()
     this.props.dispatch({type: 'SET_QUERY', q: this.search.value })
-    this.setState({
-      q: this.search.value
-    })
   }
 
   handleCalChange = (event) => {
     event.preventDefault()
-    // this.props.dispatch({type: 'SET_NUTRITION', [event.target.id]: event.target.value })
+    if (event.target.id == "calMin") {
+      this.props.dispatch({type: 'SET_CAL_MIN', calMin: event.target.value })
+    } else if (event.target.id == "calMax") {
+      this.props.dispatch({type: 'SET_CAL_MAX', calMax: event.target.value })
+    }
     this.setState({
       [event.target.id]: event.target.value
     })
@@ -120,18 +108,6 @@ class SearchForm extends Component {
     )
   }
 
-  componentDidMount() {
-    this.setState({
-      q: this.props.q
-    })
-  }
-
-  setInitialQ(q) {
-    this.setState({
-      q: q
-    })
-  }
-
   render() {
     $(document).foundation();
     console.log(this.state)
@@ -149,7 +125,7 @@ class SearchForm extends Component {
             type="search"
             placeholder="Search for..."
             ref={input => this.search = input}
-            value={this.state.q}
+            value={this.props.q}
             onChange={this.handleInputChange}
             className="cell"
           />
@@ -192,4 +168,15 @@ class SearchForm extends Component {
   }
 }
 
-export default connect()(SearchForm);
+const mapStateToProps = state => {
+  return {
+    selectedHealthCheckboxes: state.selectedHealthCheckboxes,
+    q: state.q,
+    health: state.health,
+    digest: state.digest,
+    calMax: state.calMax,
+    calMin: state.calMin
+  }
+}
+
+export default connect(mapStateToProps)(SearchForm);

@@ -11,22 +11,7 @@ import { searchRecipes, setQuery } from '../../../packs/application'
 class Search extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      formPayload: {
-        q: "",
-        health: [],
-        diet: [],
-        calMin: null,
-        calMax: null
-      },
-      q: "",
-      from: null,
-      to: null,
-      params: [],
-      count: null,
-      more: null,
-      hits: []
-    }
+
     this.getRecipes = this.getRecipes.bind(this)
     this.trackSubmit = this.trackSubmit.bind(this)
   }
@@ -46,31 +31,20 @@ class Search extends Component {
   async getRecipes() {
 
 
-    const current_state = await this.state.formPayload
+    const current_state = await this.props.health
     let add_props = ""
-    if (this.state.formPayload.health.size > 0) {
-      this.state.formPayload.health.forEach((label) => add_props += `&health=${label}`)
+    if (this.props.health) {
+      this.props.health.forEach((label) => add_props += `&health=${label}`)
     }
-    if (this.state.formPayload.diet.length > 0) {
-      add_props += `&diet=${this.state.formPayload.diet}`
+    if (this.props.diet) {
+      add_props += `&diet=${this.props.diet}`
     }
-    if (this.minMax(this.state.formPayload.calMin, this.state.formPayload.calMax)) {
-      add_props += `&calories=${this.minMax(this.state.formPayload.calMin, this.state.formPayload.calMax)}`
+    if (this.minMax(this.props.calMin, this.props.calMax)) {
+      add_props += `&calories=${this.minMax(this.props.calMin, this.props.calMax)}`
     }
-    const api_call = await fetch(`https://api.edamam.com/search?q=${this.state.formPayload.q}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
+    const api_call = await fetch(`https://api.edamam.com/search?q=${this.props.q}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
 
     const data = await api_call.json();
-
-
-    this.setState({
-      q: data.q,
-      from: data.from,
-      to: data.to,
-      params: data.params,
-      count: data.count,
-      more: data.more,
-      hits: data.hits
-    })
 
     this.props.dispatch({type: 'SEARCH_RECIPES', hits: data.hits})
   }
@@ -88,14 +62,9 @@ class Search extends Component {
     )
   }
 
-  trackSubmit(formPayload) {
+  trackSubmit() {
     event.preventDefault()
-    if (formPayload.q && formPayload.q.length > 1) {
-      this.setState({
-        formPayload: formPayload
-      })
-      this.getRecipes()
-    }
+    this.getRecipes()
   }
 
   componentDidMount(){
@@ -139,14 +108,13 @@ class Search extends Component {
       )
     })
     let searchAlert
-    if (this.state.q === "undefined" || this.state.hits.length === 0 && this.state.formPayload) {
+    if (this.props.q === "undefined" || this.props.hits.length === 0 && this.props) {
       searchAlert = this.generateAlert("warning", "No Matching Recipes!  ", "Please widen your search!  ")
-    } else if (this.state.q !== "") {
+    } else if (this.props.q !== "") {
       searchAlert = this.generateAlert("success", "Success!  ", "Deliciousness Awaits!  ")
     }
     let icon = []
-    console.log(Object.keys(searchConstants.NUTRIENTS).map(key => searchConstants.NUTRIENTS[key].label + " (" + searchConstants.NUTRIENTS[key].unit + ")"))
-    console.log(this.state)
+
     return (
       <div >
         <SearchForm
@@ -164,7 +132,12 @@ class Search extends Component {
 
 const mapStateToProps = state => {
   return {
-    hits: state.hits
+    hits: state.hits,
+    q: state.q,
+    health: state.health,
+    diet: state.diet,
+    calMin: state.calMin,
+    calMax: state.calMax
   }
 }
 
