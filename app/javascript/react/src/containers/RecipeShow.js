@@ -45,9 +45,9 @@ const RecipeShow = (props) => {
 
   console.log(props)
   let unit
-  if ('digest' in props.recipe) {
+  if (props.recipe.digest) {
     unit = props.recipe.digest
-  } else if ('nutrients' in props.recipe) {
+  } else if (props.recipe.nutrients) {
     unit = props.recipe.nutrients
   }
     carbDigest = unit.find(i =>
@@ -140,7 +140,7 @@ const RecipeShow = (props) => {
 
 const mapStateToProps = state => {
   let recipeState = state.hits[state.shownRecipe]
-  if ("recipe" in state.hits[state.shownRecipe]) {
+  if (state.hits[state.shownRecipe].recipe) {
    recipeState = state.hits[state.shownRecipe].recipe
   }
   return {

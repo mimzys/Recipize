@@ -23,7 +23,7 @@ const RecipeList = (props) => {
 
   return(
     <div className="recipelist">
-    <div className="grid-y grid-container-fluid" onMouseOver={() => props.dispatch({type: "SET_RECIPE_SHOW", id: props.index})}>
+    <div className="grid-y grid-container-fluid" onClick={() => props.dispatch({type: "SET_RECIPE_SHOW", id: props.index})}>
     <Link to={{ pathname: `${props.path}/${props.index}`, state: {button: props.button },
       component: {RecipeShow} }}
     >
