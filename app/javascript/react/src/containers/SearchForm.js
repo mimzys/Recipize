@@ -73,6 +73,8 @@ class SearchForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + `?q=${this.search.value.split(" ").join('+')}`;
+    window.history.pushState({path:newurl},'',newurl);
     this.props.trackSubmit()
   }
 
@@ -110,7 +112,6 @@ class SearchForm extends Component {
 
   render() {
     $(document).foundation();
-    console.log(this.state)
 
     return(
       <div>
@@ -125,7 +126,7 @@ class SearchForm extends Component {
             type="search"
             placeholder="Search for..."
             ref={input => this.search = input}
-            value={this.props.q}
+            value={this.props.q.replace("+", " ").replace('%20', ' ')}
             onChange={this.handleInputChange}
             className="cell"
           />

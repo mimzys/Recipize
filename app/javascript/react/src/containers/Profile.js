@@ -32,16 +32,6 @@ class Profile extends Component {
         <RecipeList
           index={index}
           key={index}
-          recipe={hit}
-          path={("search?q=" + hit.label.split(" ", 1) +
-            this.props.location.search).toLowerCase()}
-          digest={hit.nutrients}
-          ingredients={hit.ingredients}
-          yield={hit.yield}
-          label={hit.label}
-          image={hit.image}
-          calories={hit.calories}
-          url={hit.url}
           button="Remove"
         />
       )

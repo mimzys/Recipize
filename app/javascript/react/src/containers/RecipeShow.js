@@ -39,29 +39,18 @@ const RecipeShow = (props) => {
     event.target.text = "❥ Removed! ❥"
   }
 
-  let carbDigest
-  let fatDigest
-  let proteinDigest
-
-  console.log(props)
-  let unit
-  if (props.recipe.digest) {
-    unit = props.recipe.digest
-  } else if (props.recipe.nutrients) {
-    unit = props.recipe.nutrients
-  }
-    carbDigest = unit.find(i =>
+  let carbDigest = props.digest.find(i =>
       Object.values(i).includes('CHOCDF'))
-    fatDigest = unit.find(i =>
+  let fatDigest = props.digest.find(i =>
       Object.values(i).includes('FAT'))
-    proteinDigest = unit.find(i =>
+  let proteinDigest = props.digest.find(i =>
       Object.values(i).includes('PROCNT'))
 
-  let carbs = Math.round(carbDigest.total / props.recipe.yield)
-  let fat = Math.round(fatDigest.total / props.recipe.yield)
-  let protein = Math.round(proteinDigest.total / props.recipe.yield)
+  let carbs = Math.round(carbDigest.total / props.yield)
+  let fat = Math.round(fatDigest.total / props.yield)
+  let protein = Math.round(proteinDigest.total / props.yield)
 
-  let ingredientList = props.recipe.ingredients.map((ingr, index) => {
+  let ingredientList = props.ingredients.map((ingr, index) => {
     return(
       <li key={index}>{ingr.text} ({Math.round(ingr.weight)}g)</li>
     )
@@ -77,18 +66,18 @@ const RecipeShow = (props) => {
     <div className="grid-container fluid">
       <div className="grid-x">
         <div className="cell small-offset-1">
-          <h2>{props.recipe.label}</h2>
+          <h2>{props.label}</h2>
         </div>
       </div>
       <div className="grid-x grid-margin-x">
         <div className="cell small-2 small-offset-1">
-          <img src={props.recipe.image}></img>
+          <img src={props.image}></img>
         </div>
         <div className="cell small-6">
           <ul>
-            Calories per serving: {Math.round(props.recipe.calories /
-              props.recipe.yield)} <br/>
-            Servings: {props.recipe.yield} <br/>
+            Calories per serving: {Math.round(props.calories /
+              props.yield)} <br/>
+            Servings: {props.yield} <br/>
             Ingredients: <br/>
             <ul>
               {ingredientList}
@@ -117,12 +106,12 @@ const RecipeShow = (props) => {
       <div className="grid-x grid-margin-x">
         <div className="cell small-6">
           <MicroTable
-            digest={unit}
+            digest={props.digest}
           />
         </div>
         <div className="cell small-6">
           <div className="expanded button-group">
-            <a href={props.recipe.url} className="button">
+            <a href={props.url} className="button" target="_blank">
               Let's Get Cooking!
             </a>
             <a className="button" onClick={onClickFunction}>
@@ -137,14 +126,24 @@ const RecipeShow = (props) => {
   )
 }
 
-
-const mapStateToProps = state => {
-  let recipeState = state.hits[state.shownRecipe]
-  if (state.hits[state.shownRecipe].recipe) {
-   recipeState = state.hits[state.shownRecipe].recipe
+const mapStateToProps = (state, props) => {
+  let listItem = state.hits[state.shownRecipe].recipe
+  if (!listItem) {
+    listItem = state.hits[state.shownRecipe]
+  }
+  let digest = listItem.digest
+  if (!digest) {
+    digest = listItem.nutrients
   }
   return {
-    recipe: recipeState
+    recipe: listItem,
+    digest: digest,
+    ingredients: listItem.ingredients,
+    yield: listItem.yield,
+    label: listItem.label,
+    image: listItem.image,
+    calories: listItem.calories,
+    url: listItem.url
   }
 }
 

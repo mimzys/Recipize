@@ -20,11 +20,11 @@ const RecipeList = (props) => {
       <li key={index}>{ingr.text}</li>
     )
   })
-
+  
   return(
     <div className="recipelist">
     <div className="grid-y grid-container-fluid" onClick={() => props.dispatch({type: "SET_RECIPE_SHOW", id: props.index})}>
-    <Link to={{ pathname: `${props.path}/${props.index}`, state: {button: props.button },
+    <Link to={{ pathname: `${window.location.pathname}/${props.index}${window.location.search}`, state: {button: props.button },
       component: {RecipeShow} }}
     >
       <div className="grid-x">
@@ -73,4 +73,24 @@ const RecipeList = (props) => {
   )
 };
 
-export default connect()(RecipeList);
+const mapStateToProps = (state, props) => {
+  let listItem = state.hits[props.index].recipe
+  if (!listItem) {
+    listItem = state.hits[props.index]
+  }
+  let digest = listItem.digest
+  if (!digest) {
+    digest = listItem.nutrients
+  }
+  return {
+    digest: digest,
+    ingredients: listItem.ingredients,
+    yield: listItem.yield,
+    label: listItem.label,
+    image: listItem.image,
+    calories: listItem.calories,
+    url: listItem.url
+  }
+}
+
+export default connect(mapStateToProps)(RecipeList);

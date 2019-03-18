@@ -6,11 +6,7 @@ import Home from '../components/Home';
 import Profile from './Profile';
 
 const App = props => {
-  function trimPath(path) {
-    if (path.includes('/0')) {
-      return path.slice(0,-2)
-    }
-  }
+
   return(
     <Router history={browserHistory}>
       <Route path='/'
@@ -23,8 +19,9 @@ const App = props => {
       >
         <IndexRoute component={Home}/>
         <Route path="search" component={Search}/>
-        <Route path=":search/:id" component={RecipeShow}/>
+        <Route path={":search/:id*"} component={RecipeShow}/>
         <Route path="profile" component={Profile}/>
+        <Route path={":profile/:id*"} component={RecipeShow}/>
       </Route>
     </Router>
   )

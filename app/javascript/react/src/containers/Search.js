@@ -16,7 +16,7 @@ class Search extends Component {
     this.trackSubmit = this.trackSubmit.bind(this)
   }
 
-  minMax(min = null, max = null) {
+  minMax(min, max) {
     if (min && max) {
       return `${min}-${max}`
     }
@@ -30,8 +30,10 @@ class Search extends Component {
 
   async getRecipes() {
 
-
-    const current_state = await this.props.health
+    let query = this.props.q;
+    if (!query) {
+      query = this.props.location.search.slice(3)
+    };
     let add_props = ""
     if (this.props.health) {
       this.props.health.forEach((label) => add_props += `&health=${label}`)
@@ -42,7 +44,7 @@ class Search extends Component {
     if (this.minMax(this.props.calMin, this.props.calMax)) {
       add_props += `&calories=${this.minMax(this.props.calMin, this.props.calMax)}`
     }
-    const api_call = await fetch(`https://api.edamam.com/search?q=${this.props.q}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
+    const api_call = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${searchConstants.RECIPE_SEARCH_APP_ID}&app_key=${searchConstants.RECIPE_SEARCH_API_KEY}${add_props}`)
 
     const data = await api_call.json();
 
@@ -68,22 +70,12 @@ class Search extends Component {
   }
 
   componentDidMount(){
-    let newFormPayload = {
-      q: this.props.location.search.slice(3),
-      health: [],
-      diet: [],
-      calMin: null,
-      calMax: null
-    }
-    this.setState({
-      formPayload: newFormPayload,
-    })
-    this.getRecipes()
+
     this.props.dispatch({type: 'SET_QUERY', q: this.props.location.search.slice(3) })
+    this.getRecipes()
   }
 
   render() {
-    console.log(this.props.hits)
 
     let showResults
     let recipesArray
@@ -92,17 +84,9 @@ class Search extends Component {
         <RecipeList
           index={index}
           key={index}
-          recipe={hit.recipe}
           path={this.props.location.pathname + this.props.location.search}
           pathname={this.props.location.pathname}
           search={this.props.location.search}
-          digest={hit.recipe.digest}
-          ingredients={hit.recipe.ingredients}
-          yield={hit.recipe.yield}
-          label={hit.recipe.label}
-          image={hit.recipe.image}
-          calories={hit.recipe.calories}
-          url={hit.recipe.url}
           button="Favorite!"
         />
       )
