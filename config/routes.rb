@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'homes#index'
   get '/search', to: 'homes#index'
-  get '/search:search', to: 'homes#index'
-  get '/search:search/:id', to: 'homes#index'
   get '/profile', to: 'homes#index'
+  match "/search/:id", to: 'application#index', via: :all
+  match "/profile/:id", to: 'application#index', via: :all
   devise_for :users
   resources :recipes, only: [:index, :show, :new, :create] do
     resources :digests, only: [:new, :create]

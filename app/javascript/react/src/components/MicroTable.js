@@ -1,18 +1,17 @@
-import React from 'react';
-import { browserHistory, Link } from 'react-router';
-import MicroTableRow from './MicroTableRow'
+import React from "react";
+import { browserHistory, Link } from "react-router";
+import MicroTableRow from "./MicroTableRow";
 
-const MicroTable = (props) => {
-
-  let tableRows = props.digest.map((ntr) =>{
-    let ntrSub = []
+const MicroTable = props => {
+  let tableRows = props.digest.map(ntr => {
+    let ntrSub = [];
     if (ntr.sub) {
-      ntrSub = ntr.sub.map((subNtr) => {
-        let dv = "---"
+      ntrSub = ntr.sub.map(subNtr => {
+        let dv = "---";
         if (subNtr.hasRDI) {
-          dv = String((subNtr.daily).toFixed(1)) + "%"
+          dv = String(subNtr.daily.toFixed(1)) + "%";
         }
-        return(
+        return (
           <MicroTableRow
             key={subNtr.label}
             label={subNtr.label}
@@ -20,12 +19,12 @@ const MicroTable = (props) => {
             total={subNtr.total}
             daily={dv}
           />
-        )
-      })
+        );
+      });
     }
-    let dv = "---"
+    let dv = "---";
     if (ntr.hasRDI) {
-      dv = String((ntr.daily).toFixed(1)) + "%"
+      dv = String(ntr.daily.toFixed(1)) + "%";
     }
     let parentNtr = [
       <MicroTableRow
@@ -35,11 +34,11 @@ const MicroTable = (props) => {
         total={ntr.total}
         daily={dv}
       />
-    ]
-    return parentNtr.concat(ntrSub)
-  })
+    ];
+    return parentNtr.concat(ntrSub);
+  });
 
-  return(
+  return (
     <table className="stack">
       <thead>
         <tr>
@@ -48,10 +47,8 @@ const MicroTable = (props) => {
           <th width="150">Daily Value:</th>
         </tr>
       </thead>
-      <tbody>
-        {tableRows}
-      </tbody>
+      <tbody>{tableRows}</tbody>
     </table>
-  )
-}
+  );
+};
 export default MicroTable;

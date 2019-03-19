@@ -41,7 +41,7 @@
     "webpack-dev-server": "^2.11.1"
   },
   "scripts": {
-    "start": "./bin/webpack-dev-server",
+    "start": "./bin/webpack-dev-server --history-api-fallback",
     "test": "node_modules/.bin/karma start karma.conf.js"
   }
 }
