@@ -23,16 +23,26 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if request.referrer
-      if request.referrer[-2] == "/"
-        request.referrer[0...-2]
-      elsif !(/sign_in$/ =~ request.referrer).nil? || !(/sign_up$/ =~ request.referrer).nil?
-        '/'
-      else
-        request.referrer
-      end
+    if request.referrer.include? "search?q="
+      return request.referrer
+    elsif request.referrer.include? "search/"
+      q_ind = request.referrer.index("?q=")
+      return '/search' + request.referrer[q_ind..-1]
+    elsif !(/sign_in$/ =~ request.referrer).nil? || !(/sign_up$/ =~ request.referrer).nil?
+      return '/'
+    else
+      return request.referrer
     end
-    '/'
+  end
+
+  def index
+    if request.query_string.length > 0
+      redirect_to "/search?#{request.query_string}"
+    elsif request.path[0..-3] == "/profile"
+      redirect_to '/profile'
+    else
+      redirect_to root_path
+    end
   end
 
   protected
